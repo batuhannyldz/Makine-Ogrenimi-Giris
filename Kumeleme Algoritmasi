@@ -1,1 +1,96 @@
+Hiyerarşik Kümeleme:
 
+from sklearn.datasets import make_blobs
+from sklearn.cluster import AgglomerativeClustering
+import matplotlib.pyplot as plt
+
+# Örnek veri seti oluştur
+X, _ = make_blobs(n_samples=300, centers=4, cluster_std=0.60, random_state=0)
+
+# Aglomeratif hiyerarşik kümeleme modelini oluştur
+model = AgglomerativeClustering(n_clusters=4)
+
+# Modeli eğit
+model.fit(X)
+
+# Küme etiketlerini al
+labels = model.labels_
+
+# Veri noktalarını ve kümeleri görselleştir
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='viridis')
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.title("Aglomeratif Hiyerarşik Kümeleme")
+plt.show()
+
+Kodun Aciklamasi:
+
+Örnek veri seti oluşturma:
+make_blobs fonksiyonu, belirli bir sayıda küme merkezi ve standart sapma ile belirli bir dağılıma sahip rastgele veri noktaları oluşturur.
+n_samples parametresi, oluşturulacak veri noktalarının toplam sayısını belirtir.
+centers parametresi, küme merkezlerinin sayısını belirtir.
+cluster_std parametresi, küme merkezlerinin etrafındaki veri noktalarının standart sapmasını belirtir.
+random_state parametresi, rastgele sayı üretme işleminin tekrarlanabilirliğini sağlar.
+Aglomeratif hiyerarşik kümeleme modelinin oluşturulması:
+
+AgglomerativeClustering sınıfından bir model oluşturulur.
+n_clusters parametresi, oluşturulacak küme sayısını belirtir.
+Modelin eğitilmesi:
+
+Oluşturulan model, veri seti üzerinde eğitilir.
+Veri noktaları, model tarafından kümelere ayrılır.
+Küme etiketlerinin alınması:
+
+Model tarafından atanan küme etiketleri, model.labels_ ile alınır.
+Sonuçların görselleştirilmesi:
+
+plt.scatter fonksiyonu kullanılarak veri noktaları ve atanan küme etiketleri renklendirilerek görselleştirilir.
+c parametresi, her bir veri noktasının ait olduğu küme etiketlerini belirtir.
+cmap parametresi, kullanılacak renk haritasını belirtir.
+xlabel ve ylabel fonksiyonları, x ve y eksenlerinin etiketlerini belirtir.
+title fonksiyonu, grafiğin başlığını belirtir.
+plt.show() fonksiyonu, grafiği görüntüler.
+
+K-Means Algoritmasının Örnek Uygulaması
+from sklearn.cluster import KMeans
+import numpy as np
+
+# Örnek veri seti
+X = np.array([[1, 2], [1, 4], [1, 0],
+              [10, 2], [10, 4], [10, 0]])
+
+# K-Means modeli oluşturun ve eğitin
+kmeans = KMeans(n_clusters=2, random_state=0)
+kmeans.fit(X)
+
+# Küme merkezlerini ve küme etiketlerini alın
+centers = kmeans.cluster_centers_
+labels = kmeans.labels_
+
+print("Küme merkezleri:")
+print(centers)
+print("Küme etiketleri:")
+print(labels)
+
+Kodun Aciklamasi:
+KMeans sınıfının ve numpy kütüphanesinin içe aktarılması:
+
+from sklearn.cluster import KMeans ifadesi, scikit-learn kütüphanesindeki KMeans kümeleme algoritmasını içeri aktarır.
+import numpy as np ifadesi, numpy kütüphanesini içeri aktarır ve np kısaltmasıyla kullanılabilir hale getirir.
+Örnek veri setinin oluşturulması:
+
+X değişkeni, 6 adet örneği içeren bir numpy dizisi olarak tanımlanır.
+Her bir örnek, 2 boyutlu bir uzayda (x, y) konumunu belirtir.
+K-Means modelinin oluşturulması ve eğitilmesi:
+
+KMeans sınıfından bir model oluşturulur.
+n_clusters parametresi, oluşturulacak küme sayısını belirtir. Burada 2 küme oluşturulur.
+random_state parametresi, rastgele başlangıç merkezlerini seçerken kullanılacak rastgele durumun belirlenmesini sağlar.
+fit() fonksiyonu, modelin veri seti üzerinde eğitilmesini sağlar. Veri noktaları, model tarafından belirlenen kümelere atanır.
+Küme merkezlerinin ve küme etiketlerinin alınması:
+
+kmeans.cluster_centers_ ifadesi, her bir kümenin merkez koordinatlarını içeren bir dizi döndürür.
+kmeans.labels_ ifadesi, her bir veri noktasının atanmış olduğu küme etiketlerini içeren bir dizi döndürür.
+Sonuçların ekrana yazdırılması:
+
+print() fonksiyonları, küme merkezlerini ve küme etiketlerini ekrana basar.
