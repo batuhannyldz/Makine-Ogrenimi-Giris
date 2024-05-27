@@ -1,1 +1,184 @@
+Karar Ağaçları
 
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+import matplotlib.pyplot as plt
+
+# Iris veri setini yükleme
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Karar ağacı sınıflandırıcısını oluşturma ve eğitme
+clf = DecisionTreeClassifier(random_state=0)
+clf.fit(X, y)
+
+# Karar ağacını görselleştirme
+plt.figure(figsize=(10, 7))
+plot_tree(clf, filled=True, feature_names=iris.feature_names, class_names=iris.target_names)
+plt.show()
+
+Kodun Aciklamasi
+
+Iris veri setinin yüklenmesi:
+
+load_iris() fonksiyonu, Iris veri setini yükler.
+Bu veri seti, çiçek türlerinin (setosa, versicolor, virginica) özelliklerini içerir.
+Veri setinin ayrılması:
+
+X, veri setindeki özellikleri (çanak yaprak uzunluğu, çanak yaprak genişliği, taç yaprak uzunluğu, taç yaprak genişliği) içeren özellik matrisidir.
+y, her bir örneğin ait olduğu sınıf etiketlerini içeren hedef dizisidir.
+Karar ağacı modelinin oluşturulması ve eğitilmesi:
+
+DecisionTreeClassifier sınıfından bir model oluşturulur.
+random_state parametresi, modelin rastgelelikten etkilenmemesini sağlar.
+fit() fonksiyonu, modelin veri seti üzerinde eğitilmesini sağlar.
+Karar ağacının görselleştirilmesi:
+
+plot_tree() fonksiyonu, karar ağacının görselleştirilmesini sağlar.
+filled=True parametresi, karar ağacının renkli olarak görselleştirilmesini sağlar.
+feature_names parametresi, her bir özelliğin adını belirtir.
+class_names parametresi, her bir sınıfın adını belirtir.
+plt.show() fonksiyonu, görselleştirmeyi ekranda görüntüler.
+
+K-En Yakın Komşu
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# Iris veri setini yükleme
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Veri setini eğitim ve test setlerine ayırma
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# K-En Yakın Komşu sınıflandırıcısını oluşturma ve eğitme
+knn = KNeighborsClassifier(n_neighbors=3)
+knn.fit(X_train, y_train)
+
+# Test seti üzerinde tahmin yapma
+y_pred = knn.predict(X_test)
+
+# Doğruluk skorunu hesaplama
+accuracy = accuracy_score(y_test, y_pred)
+print("Doğruluk:", accuracy)
+
+kodun Aciklamasi
+
+Iris veri setini yükleme:
+
+load_iris() fonksiyonu, Iris veri setini yükler.
+Veri setini eğitim ve test setlerine ayırma:
+
+train_test_split() fonksiyonu, veri setini eğitim ve test setlerine ayırır. Bu, genellikle veri setinin belirli bir yüzdesini test seti olarak kullanmayı ve geri kalanını eğitim seti olarak kullanmayı sağlar.
+K-En Yakın Komşu sınıflandırıcısını oluşturma ve eğitme:
+
+KNeighborsClassifier sınıfından bir model oluşturulur.
+n_neighbors parametresi, her bir veri noktasının sınıflandırılmasında kullanılacak komşu sayısını belirtir.
+fit() fonksiyonu, modelin eğitim veri seti üzerinde eğitilmesini sağlar.
+Test seti üzerinde tahmin yapma:
+
+predict() fonksiyonu, modelin test veri seti üzerinde tahmin yapmasını sağlar.
+Doğruluk skorunu hesaplama:
+
+accuracy_score() fonksiyonu, tahminlerin gerçek etiketlerle karşılaştırılmasıyla doğruluk skorunu hesaplar.
+Doğruluk, doğru sınıflandırılan örneklerin toplam örnek sayısına oranıdır.
+
+Destek Vektör Makineleri
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+
+# Iris veri setini yükleme
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Veri setini eğitim ve test setlerine ayırma
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Destek Vektör Makineleri (SVM) sınıflandırıcısını oluşturma ve eğitme
+svm = SVC(kernel='linear', C=1.0, random_state=42)
+svm.fit(X_train, y_train)
+
+# Test seti üzerinde tahmin yapma
+y_pred = svm.predict(X_test)
+
+# Doğruluk skorunu hesaplama
+accuracy = accuracy_score(y_test, y_pred)
+print("Doğruluk:", accuracy)
+
+kodun Aciklamasi
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+
+# Iris veri setini yükleme
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Veri setini eğitim ve test setlerine ayırma
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Destek Vektör Makineleri (SVM) sınıflandırıcısını oluşturma ve eğitme
+svm = SVC(kernel='linear', C=1.0, random_state=42)
+svm.fit(X_train, y_train)
+
+# Test seti üzerinde tahmin yapma
+y_pred = svm.predict(X_test)
+
+# Doğruluk skorunu hesaplama
+accuracy = accuracy_score(y_test, y_pred)
+print("Doğruluk:", accuracy)
+
+Naive Bayes
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+
+# Iris veri setini yükleme
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Veri setini eğitim ve test setlerine ayırma
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Naive Bayes sınıflandırıcısını oluşturma ve eğitme
+nb = GaussianNB()
+nb.fit(X_train, y_train)
+
+# Test seti üzerinde tahmin yapma
+y_pred = nb.predict(X_test)
+
+# Doğruluk skorunu hesaplama
+accuracy = accuracy_score(y_test, y_pred)
+print("Doğruluk:", accuracy)
+
+kodun Aciklamasi
+
+Iris veri setini yükleme:
+
+load_iris() fonksiyonu, Iris veri setini yükler.
+Veri setini eğitim ve test setlerine ayırma:
+
+train_test_split() fonksiyonu, veri setini eğitim ve test setlerine ayırır.
+Naive Bayes sınıflandırıcısını oluşturma ve eğitme:
+
+GaussianNB() sınıfından bir model oluşturulur.
+Veri seti, model tarafından eğitilir.
+Test seti üzerinde tahmin yapma:
+
+predict() fonksiyonu, modelin test veri seti üzerinde tahmin yapmasını sağlar.
+Doğruluk skorunu hesaplama:
+
+accuracy_score() fonksiyonu, tahminlerin gerçek etiketlerle karşılaştırılmasıyla doğruluk skorunu hesaplar.
