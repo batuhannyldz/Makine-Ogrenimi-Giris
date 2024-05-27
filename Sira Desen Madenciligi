@@ -1,1 +1,44 @@
+Rassal Orman algoritması
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
 
+# Iris veri setini yükleme
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Veri setini eğitim ve test setlerine ayırma
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Rassal Orman sınıflandırıcısını oluşturma ve eğitme
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
+
+# Test seti üzerinde tahmin yapma
+y_pred = rf.predict(X_test)
+
+# Doğruluk skorunu hesaplama
+accuracy = accuracy_score(y_test, y_pred)
+print("Doğruluk:", accuracy)
+
+Kodun Aciklamasi
+
+Iris veri setini yükleme:
+
+load_iris() fonksiyonu, Iris veri setini yükler.
+Veri setini eğitim ve test setlerine ayırma:
+
+train_test_split() fonksiyonu, veri setini eğitim ve test setlerine ayırır.
+Rassal Orman sınıflandırıcısını oluşturma ve eğitme:
+
+RandomForestClassifier() sınıfından bir model oluşturulur.
+n_estimators parametresi, oluşturulacak ağaç sayısını belirtir.
+Veri seti, model tarafından eğitilir.
+Test seti üzerinde tahmin yapma:
+
+predict() fonksiyonu, modelin test veri seti üzerinde tahmin yapmasını sağlar.
+Doğruluk skorunu hesaplama:
+
+accuracy_score() fonksiyonu, tahminlerin gerçek etiketlerle karşılaştırılmasıyla doğruluk skorunu hesaplar.
